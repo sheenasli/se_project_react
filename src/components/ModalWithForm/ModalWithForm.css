@@ -34,7 +34,7 @@
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-  top: calc(100% + -37px);
+  bottom: calc(100% + -37px);
   left: calc(100% + -38px);
 }
 

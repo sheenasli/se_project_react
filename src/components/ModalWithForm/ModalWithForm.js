@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./ModalWithForm.css";
 
 const ModalWithForm = ({
@@ -7,9 +8,27 @@ const ModalWithForm = ({
   onClose,
   name,
 }) => {
+  // start
+  const ref = useRef();
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        onClose();
+      }
+    };
+    document.addEventListener("click", checkIfClickedOutside);
+  }, [onClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+  // end
   return (
     <div className={`modal modal_type_${name}`}>
-      <div className="modal__content">
+      <div className="modal__content" ref={ref}>
         <button
           className="modal__close-button"
           type="button"
