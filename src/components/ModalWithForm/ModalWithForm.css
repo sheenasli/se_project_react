@@ -1,0 +1,94 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  position: relative;
+  background-color: white;
+  max-width: 496px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 28px 28px;
+  font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  color: black;
+}
+
+.modal__close-button {
+  width: 20px;
+  height: 20px;
+  background-image: url("../../images/modal\ close\ button.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: calc(100% + -37px);
+  left: calc(100% + -38px);
+}
+
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.modal__input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__label_header {
+  margin: 24px 0 21px;
+}
+
+.modal__label_selectors {
+  margin-left: 0px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+input[type="radio"]:checked + label {
+  color: #000;
+  appearance: none;
+}
+
+.modal__button {
+  width: 124px;
+  height: 36px;
+  margin-top: 34px;
+  margin-bottom: 8px;
+  background-color: #000;
+  border-radius: 4px;
+  color: rgba(225, 225, 225, 1);
+  cursor: pointer;
+  text-align: center;
+  border: none;
+}
+
+.modal__button:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal__button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
