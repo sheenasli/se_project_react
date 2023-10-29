@@ -11,7 +11,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 
 function App() {
   const weatherTemp = "70° F";
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("false");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
 
@@ -35,6 +35,15 @@ function App() {
       setTemp(weatherData);
     });
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (evt) => {
+      if (evt.key === "Escape") handleCloseModal();
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => document.removeEventListener("keydown", handleEscClose);
+  }, [activeModal]);
 
   return (
     <div className="page">

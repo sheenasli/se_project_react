@@ -10,24 +10,16 @@ const ModalWithForm = ({
 }) => {
   // start
   const ref = useRef();
-  useEffect(() => {
-    const checkIfClickedOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        onClose();
-      }
-    };
-    document.addEventListener("click", checkIfClickedOutside);
-  }, [onClose]);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  const handleOutsideClick = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
   // end
   return (
-    <div className={`modal modal_type_${name}`}>
+    <div className={`modal modal_type_${name}`} onClick={handleOutsideClick}>
       <div className="modal__content" ref={ref}>
         <button
           className="modal__close-button"
