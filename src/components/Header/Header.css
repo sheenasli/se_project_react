@@ -37,3 +37,36 @@
 .header__avatar-logo {
   border-radius: 50%;
 }
+
+.navigation-container {
+  display: none;
+}
+
+.menu-button {
+  width: 44px;
+  height: 44px;
+  background-image: url("../../images/Mobile\ menu-button.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.mobile__avatar-logo {
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .navigation-container {
+    display: block;
+  }
+
+  .header__username {
+    display: none;
+  }
+
+  .header__avatar-logo {
+    display: none;
+  }
+}
