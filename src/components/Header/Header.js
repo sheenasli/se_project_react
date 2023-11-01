@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { parseWeatherData } from "../Util/weatherApi";
+import { parseWeatherData } from "../util/weatherApi";
 import "./Header.css";
 
 const Header = ({ weatherData, onCreateModal }) => {
