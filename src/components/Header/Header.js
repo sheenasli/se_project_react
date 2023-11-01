@@ -17,9 +17,10 @@ const Header = ({ weatherData, onCreateModal }) => {
 
   return (
     <header className="header">
-      <div className="header__logo">
+      <div className="header__logo-container">
         <div>
           <img
+            className="header__logo"
             src={require("../../images/HeaderLogo.svg").default}
             alt="Header Logo"
           />
@@ -55,31 +56,23 @@ const Header = ({ weatherData, onCreateModal }) => {
       >
         <button onClick={toggleMobileMenu} className="menu-button">
           {isMobileMenuOpened ? (
-            <img src="../../images/Mobile Close Button.png" alt="Close" />
+            <img
+              className="mobile__close-button"
+              src={require("../../images/Mobile Menu Close Button.svg").default}
+              alt="Close"
+            />
           ) : (
-            <img src="../../images/Mobile menu-button.png" alt="Menu" />
+            <img
+              className="mobile__nav-button"
+              src={require("../../images/Mobile Nav Button.svg").default}
+              alt="Menu"
+            />
           )}
         </button>
         {isMobileMenuOpened && (
-          <div className="header__mobile-nav">
-            <nav>
-              <div>
-                <img
-                  src={require("../../images/HeaderLogo.svg").default}
-                  alt="Header Logo"
-                />
-              </div>
-              <div>
-                {currentDate}, {weatherData.city}
-              </div>
-              <div>
-                <button
-                  className="header__button"
-                  type="text"
-                  onClick={onCreateModal}
-                >
-                  + Add Clothes
-                </button>
+          <div className="mobile__menu">
+            <div>
+              <div className="mobile__avatar-container">
                 <div>{username}</div>
                 <img
                   className="mobile__avatar-logo"
@@ -87,7 +80,14 @@ const Header = ({ weatherData, onCreateModal }) => {
                   alt="Avatar Logo"
                 />
               </div>
-            </nav>
+              <button
+                className="mobile__header__button"
+                type="text"
+                onClick={onCreateModal}
+              >
+                + Add Clothes
+              </button>
+            </div>
           </div>
         )}
       </div>

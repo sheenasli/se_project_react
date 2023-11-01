@@ -44,7 +44,7 @@
   .card__name {
     font-size: 16px;
     line-height: 20px;
-    max-width: 73px;
+    max-width: 90px;
     max-height: 24px;
     top: 32px;
   }
@@ -52,5 +52,13 @@
   .card__image {
     width: 162px;
     height: 162px;
+  }
+
+  .card {
+    height: 162px;
+  }
+
+  .card__items {
+    margin-top: 18px;
   }
 }
