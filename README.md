@@ -32,9 +32,9 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 
 ## Links
 
-- The project is hosted on GitHub Pages and can be seen live using the this [link.]
+- The project is hosted on GitHub Pages and can be seen live using the this [https://sheenasli.github.io/se_project_react/]
 - The project's backend can be found by using this [link.]
-- The API (OpenWeather) used in this application can be found by clicking on this [link.](https://openweathermap.org/)
+- The API (OpenWeather) used in this application can be found by clicking on this [https://openweathermap.org/]
 
 ## Plans for Improvement
 
