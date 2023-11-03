@@ -11,7 +11,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 
 function App() {
   const weatherTemp = "70° F";
-  const [activeModal, setActiveModal] = useState("false");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
 
@@ -31,7 +31,6 @@ function App() {
   useEffect(() => {
     getForecastWeather().then((data) => {
       const weatherData = parseWeatherData(data);
-      console.log(weatherData);
       setTemp(weatherData);
     });
   }, []);
@@ -77,15 +76,15 @@ function App() {
           <p className="modal__label_header">Select the weather type:</p>
           <div className="modal__label_selectors">
             <div>
-              <input type="radio" id="hot" value="hot" />
+              <input type="radio" id="hot" name="options" value="hot" />
               <label>Hot</label>
             </div>
             <div>
-              <input type="radio" id="warm" value="warm" />
+              <input type="radio" id="warm" name="options" value="warm" />
               <label>Warm</label>
             </div>
             <div>
-              <input type="radio" id="cold" value="cold" />
+              <input type="radio" id="cold" name="options" value="cold" />
               <label>Cold</label>
             </div>
           </div>

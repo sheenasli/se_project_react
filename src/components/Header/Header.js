@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { parseWeatherData } from "../../utils/weatherApi";
 import "./Header.css";
+import headerLogo from "../../images/HeaderLogo.svg";
+import avatarImage from "../../images/Avatar.svg";
+import mobileCloseButton from "../../images/Mobile Menu Close Button.svg";
+import mobileNavButton from "../../images/Mobile Nav Button.svg";
 
 const Header = ({ weatherData, onCreateModal }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -19,11 +23,7 @@ const Header = ({ weatherData, onCreateModal }) => {
     <header className="header">
       <div className="header__logo-container">
         <div>
-          <img
-            className="header__logo"
-            src={require("../../images/HeaderLogo.svg").default}
-            alt="Header Logo"
-          />
+          <img className="header__logo" src={headerLogo} alt="Header Logo" />
         </div>
         <div>
           {currentDate}, {weatherData.city}
@@ -43,7 +43,7 @@ const Header = ({ weatherData, onCreateModal }) => {
         <div>
           <img
             className="header__avatar-logo"
-            src={require("../../images/Avatar.svg").default}
+            src={avatarImage}
             alt="Avatar Logo"
           />
         </div>
@@ -58,13 +58,13 @@ const Header = ({ weatherData, onCreateModal }) => {
           {isMobileMenuOpened ? (
             <img
               className="mobile__close-button"
-              src={require("../../images/Mobile Menu Close Button.svg").default}
+              src={mobileCloseButton}
               alt="Close"
             />
           ) : (
             <img
               className="mobile__nav-button"
-              src={require("../../images/Mobile Nav Button.svg").default}
+              src={mobileNavButton}
               alt="Menu"
             />
           )}
@@ -76,7 +76,7 @@ const Header = ({ weatherData, onCreateModal }) => {
                 <div>{username}</div>
                 <img
                   className="mobile__avatar-logo"
-                  src={require("../../images/Avatar.svg").default}
+                  src={avatarImage}
                   alt="Avatar Logo"
                 />
               </div>

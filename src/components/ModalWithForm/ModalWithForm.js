@@ -1,13 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./ModalWithForm.css";
 
-const ModalWithForm = ({
-  title,
-  children,
-  buttonText = "Add garment",
-  onClose,
-  name,
-}) => {
+const ModalWithForm = ({ title, children, onClose, name }) => {
   // start
   const ref = useRef();
 
@@ -30,7 +24,7 @@ const ModalWithForm = ({
         <form>
           {children}
           <button className="modal__button" type="submit">
-            {buttonText}
+            Add garment
           </button>
         </form>
       </div>

@@ -5,7 +5,7 @@
 
 .weather__info {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 16px;
   font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 36px;
@@ -30,6 +30,7 @@
 
   .weather__info {
     z-index: 1;
+    top: 20px;
   }
 
   .weather__image {

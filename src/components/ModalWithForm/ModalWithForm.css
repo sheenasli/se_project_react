@@ -67,6 +67,10 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+input[type="radio"] {
+  cursor: pointer;
+}
+
 input[type="radio"]:checked + label {
   color: #000;
   appearance: none;
