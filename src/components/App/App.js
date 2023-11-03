@@ -29,10 +29,14 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const weatherData = parseWeatherData(data);
-      setTemp(weatherData);
-    });
+    getForecastWeather()
+      .then((data) => {
+        const weatherData = parseWeatherData(data);
+        setTemp(weatherData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
