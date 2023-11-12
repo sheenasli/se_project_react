@@ -19,9 +19,15 @@ export const parseWeatherData = (data) => {
     return null;
   }
 
-  const weather = {};
+  const weather = {
+    temperature: {
+      F: Math.round(weather.temperature),
+      C: Math.round(((weather.temperature - 32) * 5) / 9),
+    },
+  };
   weather.city = data.name;
   weather.temperature = Math.ceil(data.main.temp);
+
   weather.type = getWeathertype(weather.temperature);
   return weather;
 };

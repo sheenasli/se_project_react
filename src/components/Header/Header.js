@@ -5,6 +5,7 @@ import headerLogo from "../../images/HeaderLogo.svg";
 import avatarImage from "../../images/Avatar.svg";
 import mobileCloseButton from "../../images/Mobile Menu Close Button.svg";
 import mobileNavButton from "../../images/Mobile Nav Button.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const Header = ({ weatherData, onCreateModal }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -30,6 +31,7 @@ const Header = ({ weatherData, onCreateModal }) => {
         </div>
       </div>
       <div className="header__nav">
+        <ToggleSwitch />
         <div>
           <button
             className="header__button"
