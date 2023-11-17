@@ -1,12 +1,12 @@
-import "./Main.css";
-import WeatherCard from "../WeatherCard/WeatherCard";
+import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard }) {
+const ClothesSection = ({ weatherTemp, onSelectCard, onCreateModal }) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
 
   const getWeatherType = () => {
@@ -25,21 +25,27 @@ function Main({ weatherTemp, onSelectCard }) {
   });
 
   return (
-    <main className="main">
-      <WeatherCard day={false} type="cloudy" weatherTemp={temp} />
-      <section className="card__section" id="card-section">
-        <div>
-          Today is {temp + "\u00B0 " + currentTemperatureUnit} / You may want to
-          wear:
-        </div>
-        <div className="card__items">
-          {filteredCards.map((item) => (
-            <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-}
+    <section className="clothes__section" id="clothes-section">
+      <div className="clothes__section_title-wrapper">
+        <p className="clothes__section_title">Your items</p>
 
-export default Main;
+        <button
+          className="clothes__section_button"
+          type="text"
+          onClick={onCreateModal}
+        >
+          + Add New
+        </button>
+      </div>
+      <div className="clothing__section-cards">
+        {filteredCards.map((item) => {
+          return (
+            <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+export default ClothesSection;

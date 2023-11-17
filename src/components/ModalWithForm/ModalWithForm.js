@@ -1,8 +1,14 @@
 import { useEffect, useRef } from "react";
 import "./ModalWithForm.css";
 
-const ModalWithForm = ({ title, children, onClose, name }) => {
-  // start
+const ModalWithForm = ({
+  title,
+  children,
+  onClose,
+  name,
+  isOpen,
+  onSubmit,
+}) => {
   const ref = useRef();
 
   const handleOutsideClick = (e) => {
@@ -11,7 +17,6 @@ const ModalWithForm = ({ title, children, onClose, name }) => {
     }
   };
 
-  // end
   return (
     <div className={`modal modal_type_${name}`} onClick={handleOutsideClick}>
       <div className="modal__content" ref={ref}>
@@ -21,7 +26,7 @@ const ModalWithForm = ({ title, children, onClose, name }) => {
           onClick={onClose}
         ></button>
         <h3 className="modal__title">{title}</h3>
-        <form>
+        <form onSubmit={onSubmit}>
           {children}
           <button className="modal__button" type="submit">
             Add garment

@@ -21,12 +21,12 @@ export const parseWeatherData = (data) => {
 
   const weather = {
     temperature: {
-      F: Math.round(weather.temperature),
-      C: Math.round(((weather.temperature - 32) * 5) / 9),
+      F: Math.round(data.main.temp),
+      C: Math.round(((data.main.temp - 32) * 5) / 9),
     },
   };
   weather.city = data.name;
-  weather.temperature = Math.ceil(data.main.temp);
+  // weather.temperature = Math.ceil(data.main.temp);
 
   weather.type = getWeathertype(weather.temperature);
   return weather;

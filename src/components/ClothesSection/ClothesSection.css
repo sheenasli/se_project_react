@@ -1,0 +1,35 @@
+.clothes__section {
+}
+
+.clothes__section_title-wrapper {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.clothes__section_title {
+  margin-right: 20px;
+  margin-bottom: 0px;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 700;
+  color: black;
+}
+
+.clothes__section_button {
+  border: none;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.clothing__section-cards {
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: black;
+}

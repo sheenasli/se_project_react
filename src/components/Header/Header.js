@@ -6,6 +6,7 @@ import avatarImage from "../../images/Avatar.svg";
 import mobileCloseButton from "../../images/Mobile Menu Close Button.svg";
 import mobileNavButton from "../../images/Mobile Nav Button.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 const Header = ({ weatherData, onCreateModal }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -24,8 +25,11 @@ const Header = ({ weatherData, onCreateModal }) => {
     <header className="header">
       <div className="header__logo-container">
         <div>
-          <img className="header__logo" src={headerLogo} alt="Header Logo" />
+          <Link to="/">
+            <img className="header__logo" src={headerLogo} alt="Header Logo" />
+          </Link>
         </div>
+
         <div>
           {currentDate}, {weatherData.city}
         </div>
@@ -41,7 +45,9 @@ const Header = ({ weatherData, onCreateModal }) => {
             + Add Clothes
           </button>
         </div>
-        <div className="header__username">{username}</div>
+        <Link className="header__username" to="/profile">
+          {username}
+        </Link>
         <div>
           <img
             className="header__avatar-logo"
