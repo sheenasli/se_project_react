@@ -45,6 +45,12 @@
   max-height: 498px;
 }
 
+.modal__info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .modal__info {
   font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 20px;
@@ -63,6 +69,17 @@
 .modal__info-weather {
   margin-top: 0px;
   margin-top: 12px;
+}
+
+.modal__delete-button_visible {
+  margin-right: 32px;
+  border: none;
+  background-color: transparent;
+  font-family: "CabinetGrotesk-M", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: rgba(255, 77, 0, 1);
 }
 
 @media screen and (min-width: 320px) and (max-width: 425px) {

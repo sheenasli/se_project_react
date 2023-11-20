@@ -37,5 +37,3 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 - The API (OpenWeather) used in this application can be found by clicking on this [https://openweathermap.org/]
 
 ## Plans for Improvement
-
-- Make the WTWR application responsive (header, cards, modal windows) to make it more user-friendly and aesthetically pleasing on different screen sized and devices

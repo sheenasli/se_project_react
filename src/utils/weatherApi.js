@@ -26,8 +26,6 @@ export const parseWeatherData = (data) => {
     },
   };
   weather.city = data.name;
-  // weather.temperature = Math.ceil(data.main.temp);
-
   weather.type = getWeathertype(weather.temperature);
   return weather;
 };

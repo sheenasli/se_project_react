@@ -11,6 +11,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Switch, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile /Profile";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
+import { baseUrl, getItems, addItems, deleteItems } from "../../utils/api";
 
 function App() {
   const weatherTemp = "70° F";
@@ -19,6 +21,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -37,10 +40,17 @@ function App() {
     console.log(values);
   };
 
-  const handleAddItemSubmit = (item) => {
-    //api corresponding methods
-    setClothingItems([item, ...clothingItems]);
-    handleCloseModal();
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    addItems({ name, imageUrl, weather })
+      .then((res) => {
+        setClothingItems([res, ...clothingItems]);
+        handleCloseModal();
+      })
+      //api call
+      .catch((error) => {
+        console.log(error);
+      });
+    //catch error block
   };
 
   const handleToggleSwitchChange = () => {
@@ -49,11 +59,36 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  const handleOpenConfirmModal = () => {
+    setActiveModal("delete");
+  };
+
+  const handleCloseConfirmModal = () => {
+    setActiveModal("");
+  };
+
+  const handleDeleteItem = (id) => {
+    //make API call,
+    const filteredCards = clothingItems.filter((card) => card._id !== id);
+    setClothingItems(filteredCards);
+    handleCloseModal();
+    handleCloseConfirmModal();
+    //catch err block
+  };
+
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
         const weatherData = parseWeatherData(data);
         setTemp(weatherData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    getItems()
+      .then((cards) => {
+        setClothingItems(cards);
       })
       .catch((error) => {
         console.log(error);
@@ -77,24 +112,43 @@ function App() {
         <Header onCreateModal={handleCreateModal} weatherData={temp} />
         <Switch>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+            />
           </Route>
 
           <Route path="/profile">
-            <Profile onCreateModal={handleCreateModal} />
+            <Profile
+              onCreateModal={handleCreateModal}
+              clothingItems={clothingItems}
+            />
           </Route>
         </Switch>
 
         <Footer />
         {activeModal === "create" && (
           <AddItemModal
-            handleCloseModal={handleCloseModal}
+            onClose={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            onDelete={handleOpenConfirmModal}
+            handleOpenConfirmModal={handleOpenConfirmModal}
+          />
+        )}
+        {activeModal === "delete" && (
+          <DeleteConfirmModal
+            handleDeleteItem={() => handleDeleteItem(selectedCard._id)}
+            handleCloseConfirmModal={handleCloseConfirmModal}
+            selectedCard={selectedCard}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -97,6 +97,48 @@ input[type="radio"]:checked + label {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.modal__confirm-content {
+  position: relative;
+  background-color: white;
+  max-width: 670px;
+  width: 100%;
+  border-radius: 20px;
+  padding: 59px 28px;
+  text-align: center;
+  font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: black;
+}
+
+.modal__confirm-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__confirm-button {
+  margin-top: 40px;
+  border: none;
+  background-color: transparent;
+  font-family: "CabinetGrotesk-M", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: rgba(255, 77, 0, 1);
+}
+
+.modal__cancel-button {
+  margin-top: 24px;
+  border: none;
+  background-color: transparent;
+  font-family: "CabinetGrotesk-M", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+}
+
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .modal {
     bottom: -182px;

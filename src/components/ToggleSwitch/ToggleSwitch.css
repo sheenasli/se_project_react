@@ -13,6 +13,10 @@
   background-color: white;
 }
 
+.switch__box:hover {
+  border: 2px solid rgba(0, 0, 1);
+}
+
 .switch__slider {
   border-radius: 20px;
   width: 28px;
