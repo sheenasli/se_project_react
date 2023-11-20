@@ -36,21 +36,15 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
-  };
-
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     addItems({ name, imageUrl, weather })
       .then((res) => {
         setClothingItems([res, ...clothingItems]);
         handleCloseModal();
       })
-      //api call
       .catch((error) => {
         console.log(error);
       });
-    //catch error block
   };
 
   const handleToggleSwitchChange = () => {
@@ -68,12 +62,10 @@ function App() {
   };
 
   const handleDeleteItem = (id) => {
-    //make API call,
     const filteredCards = clothingItems.filter((card) => card._id !== id);
     setClothingItems(filteredCards);
     handleCloseModal();
     handleCloseConfirmModal();
-    //catch err block
   };
 
   useEffect(() => {

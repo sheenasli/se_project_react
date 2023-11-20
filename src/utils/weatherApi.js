@@ -26,11 +26,11 @@ export const parseWeatherData = (data) => {
     },
   };
   weather.city = data.name;
-  weather.type = getWeathertype(weather.temperature);
+  weather.type = getWeatherType(weather.temperature);
   return weather;
 };
 
-const getWeathertype = (weatherTemp) => {
+export const getWeatherType = (weatherTemp) => {
   if (weatherTemp >= 86) {
     return "hot";
   } else if (weatherTemp >= 66 && weatherTemp <= 85) {

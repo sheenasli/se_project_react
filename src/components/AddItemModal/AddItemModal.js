@@ -8,7 +8,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
     setName(e.target.value);
   };
 
-  const [link, setUrl] = useState("");
+  const [imageUrl, setUrl] = useState("");
   const handleUrlChange = (e) => {
     console.log(e.target.value);
     setUrl(e.target.value);
@@ -22,7 +22,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link });
+    onAddItem({ name, imageUrl });
   };
 
   return (
@@ -50,11 +50,11 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
         <input
           className="modal__input"
           type="url"
-          name="link"
+          name="imageUrl"
           minLength="1"
-          maxLength="99"
+          maxLength="999"
           placeholder="Image URL"
-          value={link}
+          value={imageUrl}
           onChange={handleUrlChange}
         />
       </label>
