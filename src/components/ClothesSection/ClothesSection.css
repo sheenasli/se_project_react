@@ -32,4 +32,9 @@
   line-height: 24px;
   font-weight: 700;
   color: black;
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px 19px;
+  justify-content: flex-start;
 }

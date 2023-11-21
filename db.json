@@ -103,9 +103,28 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
+      "name": "test sneakers ",
+      "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1412&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "weather": "cold",
+      "_id": 17
+    },
+    {
+      "name": "Jeans ",
+      "imageUrl": "https://is4.fwrdassets.com/images/p/fw/z/AGOL-WJ487_V2.jpg",
+      "weather": "cold",
+      "_id": 18
+    },
+    {
+      "name": "Shearling Shoes",
+      "imageUrl": "https://www.prada.com/content/dam/pradabkg_products/1/1D1/1D109N/173F0379/1D109N_173_F0379_F_D005_SLR.jpg/_jcr_content/renditions/cq5dam.web.hebebed.1200.1200.jpg",
+      "weather": "cold",
+      "_id": 19
+    },
+    {
       "name": "test",
       "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1412&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "_id": 17
+      "weather": "cold",
+      "_id": 20
     }
   ]
 }

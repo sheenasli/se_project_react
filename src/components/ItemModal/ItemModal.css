@@ -80,6 +80,15 @@
   line-height: 24px;
   font-weight: 700;
   color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+}
+
+.modal__confirm-button {
+  cursor: pointer;
+}
+
+.modal__cancel-button {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 320px) and (max-width: 425px) {

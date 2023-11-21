@@ -37,3 +37,6 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 - The API (OpenWeather) used in this application can be found by clicking on this [https://openweathermap.org/]
 
 ## Plans for Improvement
+
+- Improve weather API functionality
+- Validate the form before submitting
