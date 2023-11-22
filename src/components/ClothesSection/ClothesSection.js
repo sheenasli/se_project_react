@@ -2,7 +2,6 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 const ClothesSection = ({ clothingItems, onSelectCard, onCreateModal }) => {
-  console.log(clothingItems);
   return (
     <section className="clothes__section" id="clothes-section">
       <div className="clothes__section_title-wrapper">

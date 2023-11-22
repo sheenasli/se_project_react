@@ -17,6 +17,11 @@ const ModalWithForm = ({
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
   return (
     <div className={`modal modal_type_${name}`} onClick={handleOutsideClick}>
       <div className="modal__content" ref={ref}>
@@ -26,7 +31,7 @@ const ModalWithForm = ({
           onClick={onClose}
         ></button>
         <h3 className="modal__title">{title}</h3>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           {children}
           <button className="modal__button" type="submit">
             Add garment

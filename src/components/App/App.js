@@ -13,6 +13,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile /Profile";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import { baseUrl, getItems, addItems, deleteItems } from "../../utils/api";
+import { processServerResponse } from "../../utils/utils";
 
 function App() {
   const weatherTemp = "70° F";
@@ -22,6 +23,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const [deleteCard, setDeleteCard] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -48,9 +50,7 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === "F"
-      ? setCurrentTemperatureUnit("C")
-      : setCurrentTemperatureUnit("F");
+    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
   const handleOpenConfirmModal = () => {
@@ -61,11 +61,24 @@ function App() {
     setActiveModal("");
   };
 
-  const handleDeleteItem = (id) => {
-    const filteredCards = clothingItems.filter((card) => card._id !== id);
-    setClothingItems(filteredCards);
-    handleCloseModal();
-    handleCloseConfirmModal();
+  const handleDeleteItem = (card, id) => {
+    setDeleteCard(true);
+    deleteItems(card._id)
+      .then(() => {
+        const filteredCards = clothingItems.filter((card) => {
+          return card._id !== id;
+        });
+
+        setClothingItems(filteredCards);
+        handleCloseModal();
+        handleCloseConfirmModal();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setDeleteCard(false);
+      });
   };
 
   useEffect(() => {
@@ -77,7 +90,9 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+  }, []);
 
+  useEffect(() => {
     getItems()
       .then((cards) => {
         setClothingItems(cards);
@@ -115,6 +130,7 @@ function App() {
             <Profile
               onCreateModal={handleCreateModal}
               clothingItems={clothingItems}
+              onSelectCard={() => {}}
             />
           </Route>
         </Switch>
