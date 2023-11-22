@@ -61,12 +61,13 @@ function App() {
     setActiveModal("");
   };
 
-  const handleDeleteItem = (card, id) => {
+  const handleDeleteItem = () => {
+    console.log(selectedCard._id);
     setDeleteCard(true);
-    deleteItems(card._id)
+    deleteItems(selectedCard._id)
       .then(() => {
         const filteredCards = clothingItems.filter((card) => {
-          return card._id !== id;
+          return card._id !== selectedCard._id;
         });
 
         setClothingItems(filteredCards);
@@ -153,7 +154,7 @@ function App() {
         )}
         {activeModal === "delete" && (
           <DeleteConfirmModal
-            handleDeleteItem={() => handleDeleteItem(selectedCard._id)}
+            handleDeleteItem={handleDeleteItem}
             handleCloseConfirmModal={handleCloseConfirmModal}
             selectedCard={selectedCard}
           />
