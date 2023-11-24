@@ -1,17 +1,12 @@
-export const baseUrl = "http://localhost:3001";
+import { processServerResponse } from "./utils";
 
-function _checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error ${res.status}`);
-}
+export const baseUrl = "http://localhost:3001";
 
 export const getItems = () => {
   return fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
-  }).then(_checkResponse);
+  }).then(processServerResponse);
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
@@ -23,12 +18,12 @@ export const addItems = ({ name, imageUrl, weather }) => {
       imageUrl,
       weather,
     }),
-  }).then(_checkResponse);
+  }).then(processServerResponse);
 };
 
 export const deleteItems = (_id) => {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-  }).then(_checkResponse);
+  }).then(processServerResponse);
 };
