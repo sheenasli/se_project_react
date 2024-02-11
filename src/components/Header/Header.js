@@ -10,13 +10,19 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const Header = ({ weatherData, onCreateModal }) => {
+const Header = ({
+  weatherData,
+  onCreateModal,
+  isLoggedIn,
+  handleRegisterModal,
+  handleLoginModal,
+}) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-  const username = "Terrence Tegegne";
-  const avatar = "";
+  // const username = "Terrence Tegegne";
+  // const avatar = "";
 
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const toggleMobileMenu = () => {
@@ -39,25 +45,36 @@ const Header = ({ weatherData, onCreateModal }) => {
       </div>
       <div className="header__nav">
         <ToggleSwitch />
-        <div>
-          <button
-            className="header__button"
-            type="text"
-            onClick={onCreateModal}
-          >
-            + Add Clothes
-          </button>
-        </div>
-        <Link className="header__username" to="/profile">
-          {currentUser?.name}
-        </Link>
-        <div>
-          <img
-            className="header__avatar-logo"
-            src={currentUser?.avatar}
-            alt="Profile Image"
-          />
-        </div>
+        {isLoggedIn ? (
+          <>
+            <button
+              className="header__button"
+              type="text"
+              onClick={onCreateModal}
+            >
+              + Add Clothes
+            </button>
+
+            <Link className="header__username" to="/profile">
+              {currentUser?.name}
+            </Link>
+
+            <img
+              className="header__avatar-logo"
+              src={currentUser?.avatar}
+              alt="Profile Image"
+            />
+          </>
+        ) : (
+          <>
+            <button className="header__buttons" onClick={handleRegisterModal}>
+              Sign Up
+            </button>
+            <button className="header__buttons" onClick={handleLoginModal}>
+              Log In
+            </button>
+          </>
+        )}
       </div>
 
       <div
@@ -84,10 +101,10 @@ const Header = ({ weatherData, onCreateModal }) => {
           <div className="mobile__menu">
             <div>
               <div className="mobile__avatar-container">
-                <div>{username}</div>
+                <div>{currentUser?.name}</div>
                 <img
                   className="mobile__avatar-logo"
-                  src={avatarImage}
+                  src={currentUser?.avatar}
                   alt="Avatar Logo"
                 />
               </div>

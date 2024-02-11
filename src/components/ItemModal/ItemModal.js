@@ -1,4 +1,5 @@
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React, { useContext, useRef } from "react";
 
 const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
@@ -9,6 +10,12 @@ const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
       onClose();
     }
   };
+
+  const { currentUser } = useContext(CurrentUserContext);
+  const isOwn = selectedCard.owner === currentUser._id;
+  const itemDeleteButtonClassName = `item__delete-button ${
+    isOwn ? "item__delete-button_visible" : "item__delete-button_hidden"
+  }`;
 
   return (
     <div className="modal" onClick={handleOutsideClick}>
@@ -28,7 +35,7 @@ const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
           </div>
           <button
             type="text"
-            className="modal__delete-button_visible"
+            className={itemDeleteButtonClassName}
             onClick={handleOpenConfirmModal}
           >
             Delete Item

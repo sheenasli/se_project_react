@@ -7,6 +7,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { useEffect, useState } from "react";
 import { getForecastWeather, parseWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
@@ -15,10 +16,18 @@ import { Switch, Route } from "react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile /Profile";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
-import { baseUrl, getItems, addItems, deleteItems } from "../../utils/api";
+import {
+  baseUrl,
+  getItems,
+  addItems,
+  deleteItems,
+  updateProfile,
+} from "../../utils/api";
 import { processServerResponse } from "../../utils/utils";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
+import * as api from "../../utils/api";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const weatherTemp = "70° F";
@@ -45,6 +54,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("loginModal");
+  };
+
+  const handleEditProfileModal = () => {
+    setActiveModal("profileModal");
   };
 
   const handleCloseModal = () => {
@@ -148,6 +161,20 @@ function App() {
       });
   }
 
+  //Callback function to edit profile
+  const handleEditProfile = ({ name, avatar }) => {
+    console.log(name, avatar);
+    updateProfile(name, avatar)
+      .then(({ data }) => {
+        setCurrentUser(data);
+        handleCloseModal();
+        return data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   //Checking for token
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -196,6 +223,36 @@ function App() {
     return () => document.removeEventListener("keydown", handleEscClose);
   }, [activeModal]);
 
+  //Callback to like a card
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    !isLiked
+      ? api
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  //callback for logging a user out
+  const history = useHistory("");
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("jwt");
+    history.pushState("/");
+  };
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={{ currentUser }}>
@@ -217,6 +274,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 clothingItems={clothingItems}
                 isLoggedIn={isLoggedIn}
+                onCardLike={handleCardLike}
               />
             </Route>
 
@@ -225,11 +283,21 @@ function App() {
                 onCreateModal={handleCreateModal}
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
-                isLoggedIn={this.state.isLoggedIn}
+                handleEditProfileModal={handleEditProfileModal}
+                isLoggedIn={isLoggedIn}
+                onCardLike={handleCardLike}
               />
             </ProtectedRoute>
           </Switch>
           <Footer />
+
+          {activeModal === "profileModal" && (
+            <EditProfileModal
+              isOpen={activeModal === "create"}
+              onClose={handleCloseModal}
+              onSubmit={handleEditProfile}
+            />
+          )}
 
           {activeModal === "registerModal" && (
             <RegisterModal
@@ -248,7 +316,6 @@ function App() {
               onSubmit={handleLogin}
             />
           )}
-
           {activeModal === "create" && (
             <AddItemModal
               onClose={handleCloseModal}
