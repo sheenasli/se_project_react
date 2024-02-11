@@ -10,9 +10,13 @@ export const getItems = () => {
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -22,8 +26,12 @@ export const addItems = ({ name, imageUrl, weather }) => {
 };
 
 export const deleteItems = (_id) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   }).then(processServerResponse);
 };

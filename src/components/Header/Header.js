@@ -7,6 +7,8 @@ import mobileCloseButton from "../../images/Mobile Menu Close Button.svg";
 import mobileNavButton from "../../images/Mobile Nav Button.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const Header = ({ weatherData, onCreateModal }) => {
   const currentDate = new Date().toLocaleString("default", {
@@ -15,12 +17,13 @@ const Header = ({ weatherData, onCreateModal }) => {
   });
   const username = "Terrence Tegegne";
   const avatar = "";
-  const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
 
+  const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const toggleMobileMenu = () => {
     setMobileMenuOpened(!isMobileMenuOpened);
   };
 
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <header className="header">
       <div className="header__logo-container">
@@ -46,13 +49,13 @@ const Header = ({ weatherData, onCreateModal }) => {
           </button>
         </div>
         <Link className="header__username" to="/profile">
-          {username}
+          {currentUser?.name}
         </Link>
         <div>
           <img
             className="header__avatar-logo"
-            src={avatarImage}
-            alt="Avatar Logo"
+            src={currentUser?.avatar}
+            alt="Profile Image"
           />
         </div>
       </div>
