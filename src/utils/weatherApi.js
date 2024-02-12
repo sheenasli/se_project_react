@@ -1,4 +1,4 @@
-import { latitude, longitude, APIkey } from "./constants";
+import { latitude, longitude, APIkey, currentTime } from "./constants";
 import { processServerResponse } from "./utils";
 
 export const getForecastWeather = () => {
@@ -31,5 +31,33 @@ export const getWeatherType = (weatherTemp) => {
     return "warm";
   } else if (weatherTemp <= 65) {
     return "cold";
+  }
+};
+
+export const getDay = (sunrise, sunset) => {
+  const sunriseUnix = sunrise * 1000;
+  const sunsetUnix = sunset * 1000;
+  if (sunsetUnix >= currentTime && currentTime >= sunriseUnix) {
+    return true;
+  } else if (sunsetUnix <= currentTime && currentTime <= sunriseUnix) {
+    return false;
+  } else {
+    return false;
+  }
+};
+
+export const getWeatherCondition = (weatherId) => {
+  if (200 <= weatherId && weatherId <= 232) {
+    return "stormy";
+  } else if (300 <= weatherId && weatherId <= 531) {
+    return "rainy";
+  } else if (600 <= weatherId && weatherId <= 622) {
+    return "snowy";
+  } else if (801 <= weatherId && weatherId <= 804) {
+    return "cloudy";
+  } else if (weatherId === 800) {
+    return "clear";
+  } else if (weatherId === 741) {
+    return "foggy";
   }
 };

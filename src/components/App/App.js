@@ -144,20 +144,16 @@ function App() {
       .then((res) => {
         if (res) {
           localStorage.setItem("jwt", res.token);
-          auth
-            .checkToken(res.token)
-            .then((data) => {
-              setCurrentUser(data.data);
-              setIsLoggedIn(true);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
+          auth.checkToken(res.token).then((data) => {
+            setCurrentUser(data.data);
+            setIsLoggedIn(true);
+          });
         }
         handleCloseModal();
       })
       .catch((err) => {
         console.error("Login failed", err);
+        throw err;
       });
   }
 
@@ -178,17 +174,14 @@ function App() {
   //Checking for token
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
-    if ({ jwt }) {
+    if (jwt) {
       localStorage.setItem("jwt", jwt);
-      auth
-        .checkToken(jwt)
-        .then((res) => {
+      auth.checkToken(jwt).then((res) => {
+        if (res && res.data) {
           setIsLoggedIn(true);
           setCurrentUser(res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+        }
+      });
     }
   }, []);
 

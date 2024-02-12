@@ -3,7 +3,11 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { getWeatherType } from "../../utils/weatherApi";
+import {
+  getWeatherType,
+  getDay,
+  getWeatherCondition,
+} from "../../utils/weatherApi";
 
 function Main({
   weatherTemp,
@@ -16,6 +20,8 @@ function Main({
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
 
   const weatherType = getWeatherType(temp);
+  const isDay = getDay();
+  const weatherCondition = getWeatherCondition();
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
@@ -23,7 +29,7 @@ function Main({
 
   return (
     <main className="main">
-      <WeatherCard day={false} type="cloudy" weatherTemp={temp} />
+      <WeatherCard type={weatherCondition} weatherTemp={temp} isDay={isDay} />
       <section className="card__section" id="card-section">
         <div>
           Today is {temp + "\u00B0 " + currentTemperatureUnit} / You may want to
