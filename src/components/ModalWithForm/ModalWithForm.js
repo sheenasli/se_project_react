@@ -8,6 +8,7 @@ const ModalWithForm = ({
   name,
   isOpen,
   onSubmit,
+  buttonText,
 }) => {
   const ref = useRef();
 
@@ -15,11 +16,6 @@ const ModalWithForm = ({
     if (ref.current && !ref.current.contains(e.target)) {
       onClose();
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit();
   };
 
   return (
@@ -31,12 +27,7 @@ const ModalWithForm = ({
           onClick={onClose}
         ></button>
         <h3 className="modal__title">{title}</h3>
-        <form onSubmit={handleSubmit}>
-          {children}
-          <button className="modal__button" type="submit">
-            Add garment
-          </button>
-        </form>
+        <form onSubmit={onSubmit}>{children}</form>
       </div>
     </div>
   );

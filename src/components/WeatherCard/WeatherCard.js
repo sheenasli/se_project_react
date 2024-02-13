@@ -11,6 +11,7 @@ const WeatherCard = ({ isDay, type, weatherTemp = 0 }) => {
   });
 
   const imageSrcUrl = weatherOption ? weatherOption.url || "" : "";
+
   return (
     <section className="weather" id="weather">
       <div className="weather__info">

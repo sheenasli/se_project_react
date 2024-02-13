@@ -90,11 +90,24 @@ input[type="radio"]:checked + label {
 }
 
 .modal__button:disabled {
-  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0.3;
 }
 
 .modal__button:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.5;
+}
+
+.modal__button-alt {
+  width: 124px;
+  height: 36px;
+  margin-top: 34px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  border-radius: 4px;
+  color: grey;
+  cursor: pointer;
+  text-align: center;
+  border: none;
 }
 
 .modal__confirm-content {

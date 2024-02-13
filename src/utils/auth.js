@@ -1,7 +1,6 @@
 import { baseUrl } from "../utils/api";
 import { processServerResponse } from "../utils/utils";
 
-//Implement two new requests to server for unauthorized users
 //signup for registration
 export const registration = (email, password, name, avatar) => {
   return fetch(`${baseUrl}/signup`, {
@@ -9,11 +8,12 @@ export const registration = (email, password, name, avatar) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ email, password, name, avatar }),
   })
     .then(processServerResponse)
     .catch((err) => {
       console.log(err);
+      // throw err;
     });
 };
 
@@ -29,6 +29,7 @@ export const authorization = (email, password) => {
     .then(processServerResponse)
     .catch((err) => {
       console.log(err);
+      throw err;
     });
 };
 
