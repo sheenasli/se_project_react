@@ -24,8 +24,6 @@ function Main({
   const isDay = getDay();
   const weatherCondition = getWeatherCondition(weatherId);
 
-  console.log("weatherCondition", weatherCondition);
-
   const filteredCards = clothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });

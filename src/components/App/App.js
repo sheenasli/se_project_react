@@ -225,7 +225,7 @@ function App() {
   }, [activeModal]);
 
   //Callback to like a card
-  const handleCardLike = ({ id, isLiked, setIsLiked }) => {
+  const handleCardLike = (id, isLiked, setIsLiked) => {
     !isLiked
       ? api
           .addCardLike(id)
@@ -233,7 +233,7 @@ function App() {
             setClothingItems((cards) =>
               cards.map((c) => (c.owner === id ? updatedCard : c))
             );
-            setIsLiked(true);
+            // setIsLiked(true);
           })
 
           .catch((error) => {
@@ -245,7 +245,7 @@ function App() {
             setClothingItems((cards) =>
               cards.map((c) => (c.owner === id ? updatedCard : c))
             );
-            setIsLiked(false);
+            // setIsLiked(false);
           })
           .catch((error) => {
             console.log(error);
