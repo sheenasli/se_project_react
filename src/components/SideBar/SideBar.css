@@ -1,4 +1,6 @@
 .sidebar__wrapper {
+  display: flex;
+  flex-direction: column;
   width: 229px;
   height: 138px;
   border: 1px;

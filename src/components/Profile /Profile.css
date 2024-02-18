@@ -1,5 +1,12 @@
 .profile {
   /* display: flex; */
+  display: flex;
+  gap: 80px;
+  margin-top: 63px;
+  margin-bottom: 80px;
+  margin-left: 40px;
+  margin-right: 40px;
+  max-width: 1440px;
 }
 
 .profile__sidebar {
