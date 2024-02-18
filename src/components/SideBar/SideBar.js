@@ -1,22 +1,22 @@
-import "./SideBar.css";
-import avatarImage from "../../images/Avatar.svg";
 import { useContext } from "react";
+import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const SideBar = ({ handleEditProfileModal, handleLogout }) => {
   const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <div className="sidebar__wrapper">
       <div className="sidebar">
         <img
           className="sidebar__avatar-logo"
           src={currentUser?.avatar}
-          alt="Profile Image"
+          alt="{currentUser.name}"
         />
-        <div className="sidebar__username">{currentUser?.name}</div>
+        <h3 className="sidebar__username">{currentUser?.name}</h3>
       </div>
       <button className="sidebar__edit" onClick={handleEditProfileModal}>
-        Change profile data
+        Change Profile Data
       </button>
       <button className="sidebar__logout" onClick={handleLogout}>
         Log out

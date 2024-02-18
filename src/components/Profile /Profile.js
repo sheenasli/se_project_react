@@ -10,21 +10,21 @@ const Profile = ({
   handleEditProfileModal,
   onCardLike,
   isLoggedIn,
+  handleLogout,
 }) => {
   return (
     <div className="profile">
-      <div className="profile__sidebar">
-        <SideBar handleEditProfileModal={handleEditProfileModal} />
-      </div>
-      <div>
-        <ClothesSection
-          onSelectCard={onSelectCard}
-          onCreateModal={onCreateModal}
-          clothingItems={clothingItems}
-          onCardLike={onCardLike}
-          isLoggedIn={isLoggedIn}
-        />
-      </div>
+      <SideBar
+        handleEditProfileModal={handleEditProfileModal}
+        handleLogout={handleLogout}
+      />
+      <ClothesSection
+        onSelectCard={onSelectCard}
+        onCreateModal={onCreateModal}
+        clothingItems={clothingItems}
+        onCardLike={onCardLike}
+        isLoggedIn={isLoggedIn}
+      />
     </div>
   );
 };

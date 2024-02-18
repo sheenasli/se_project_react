@@ -225,13 +225,14 @@ function App() {
   }, [activeModal]);
 
   //Callback to like a card
-  const handleCardLike = (id, isLiked, setIsLiked) => {
+  const handleCardLike = (id, isLiked) => {
     !isLiked
       ? api
           .addCardLike(id)
-          .then((updatedCard) => {
+          .then(({ data }) => {
+            console.log(clothingItems, data);
             setClothingItems((cards) =>
-              cards.map((c) => (c.owner === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? data : c))
             );
             // setIsLiked(true);
           })
@@ -241,9 +242,9 @@ function App() {
           })
       : api
           .removeCardLike(id)
-          .then((updatedCard) => {
+          .then(({ data }) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c.owner === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? data : c))
             );
             // setIsLiked(false);
           })
@@ -294,6 +295,7 @@ function App() {
                 handleEditProfileModal={handleEditProfileModal}
                 isLoggedIn={isLoggedIn}
                 onCardLike={handleCardLike}
+                handleLogout={handleLogout}
               />
             </ProtectedRoute>
           </Switch>

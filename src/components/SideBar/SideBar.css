@@ -1,7 +1,14 @@
+.sidebar__wrapper {
+  width: 229px;
+  height: 138px;
+  border: 1px;
+  border-color: blueviolet;
+}
+
 .sidebar {
   display: flex;
-  width: 232px;
-  height: 56px;
+  /* width: 232px;
+  height: 56px; */
 }
 
 .sidebar__username {

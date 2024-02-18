@@ -8,12 +8,7 @@ import likeButtonActive from "../../images/likeButtonActive.svg";
 const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
-  const isLiked = item.likes.some((user) => user._id === currentUser?._id);
-  // const [isLiked, setIsLiked] = useState(false);
-
-  // useEffect(() => {
-  //   setIsLiked(item.likes.some((id) => id === currentUser._id));
-  // }, [currentUser]);
+  const isLiked = item.likes.some((user) => user.includes(currentUser?._id));
 
   return (
     <div className="card">

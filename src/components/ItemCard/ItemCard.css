@@ -48,7 +48,7 @@
 .card__like {
   border: none;
   background-color: transparent;
-  opacity: 60%;
+  /* opacity: 60%; */
 }
 
 .card__items {
