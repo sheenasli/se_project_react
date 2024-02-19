@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import Profile from "../Profile /Profile";
+import Profile from "../Profile/Profile";
 
 function ProtectedRoute({ isLoggedIn, children, ...props }) {
   console.log({ isLoggedIn, children });
