@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import Profile from "../Profile /Profile";
 
-function ProtectedRoute({ isLoggedIn, component: Component, ...props }) {
+function ProtectedRoute({ isLoggedIn, children, ...props }) {
+  console.log({ isLoggedIn, children });
   return (
-    <Route {...props}>{isLoggedIn ? Component : <Redirect to="/" />}</Route>
+    <Route {...props}>{isLoggedIn ? children : <Redirect to="/" />}</Route>
   );
 }
 

@@ -19,6 +19,7 @@
 
 .clothes__section_button {
   border: none;
+  background: transparent;
   font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 20px;
   line-height: 25px;

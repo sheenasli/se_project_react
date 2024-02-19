@@ -15,12 +15,14 @@ const SideBar = ({ handleEditProfileModal, handleLogout }) => {
         />
         <h3 className="sidebar__username">{currentUser?.name}</h3>
       </div>
-      <button className="sidebar__edit" onClick={handleEditProfileModal}>
-        Change Profile Data
-      </button>
-      <button className="sidebar__logout" onClick={handleLogout}>
-        Log out
-      </button>
+      <div className="sidebar__button-wrapper">
+        <button className="sidebar__button" onClick={handleEditProfileModal}>
+          Change Profile Data
+        </button>
+        <button className="sidebar__button" onClick={handleLogout}>
+          Log out
+        </button>
+      </div>
     </div>
   );
 };

@@ -256,9 +256,10 @@ function App() {
   //callback for logging a user out
   const history = useHistory("");
   const handleLogout = () => {
-    setIsLoggedIn(false);
     localStorage.removeItem("jwt");
-    history.pushState("/");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    history.push("/");
   };
 
   return (
