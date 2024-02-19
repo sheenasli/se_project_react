@@ -1,15 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import "./ModalWithForm.css";
 
-const ModalWithForm = ({
-  title,
-  children,
-  onClose,
-  name,
-  isOpen,
-  onSubmit,
-  buttonText,
-}) => {
+const ModalWithForm = ({ title, children, onClose, name, onSubmit }) => {
   const ref = useRef();
 
   const handleOutsideClick = (e) => {

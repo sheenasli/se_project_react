@@ -21,8 +21,6 @@ const Header = ({
     month: "long",
     day: "numeric",
   });
-  // const username = "Terrence Tegegne";
-  // const avatar = "";
 
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const toggleMobileMenu = () => {

@@ -45,6 +45,3 @@ const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
 };
 
 export default ItemCard;
-
-//click handler handleLike()
-//call onCardLike() inside function, pass item argument same way as handleClick()
