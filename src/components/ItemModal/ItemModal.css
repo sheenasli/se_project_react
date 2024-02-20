@@ -86,6 +86,10 @@
   cursor: pointer;
 }
 
+.item__delete-button_hidden {
+  display: none;
+}
+
 .modal__confirm-button {
   cursor: pointer;
 }

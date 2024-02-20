@@ -73,7 +73,7 @@ function App() {
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
     addItems({ name, imageUrl, weather })
       .then((res) => {
-        setClothingItems([res, ...clothingItems]);
+        setClothingItems([res.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((error) => {

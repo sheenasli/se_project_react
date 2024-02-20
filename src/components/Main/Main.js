@@ -25,7 +25,7 @@ function Main({
   const weatherCondition = getWeatherCondition(weatherId);
 
   const filteredCards = clothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+    return item.weather?.toLowerCase() === weatherType;
   });
 
   return (
