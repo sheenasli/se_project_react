@@ -1,15 +1,22 @@
 import "./ItemModal.css";
+import { Modal } from "../Modal/Modal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React, { useContext, useRef } from "react";
 
-const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
+const ItemModal = ({
+  selectedCard,
+  name,
+  onClose,
+  handleOpenConfirmModal,
+  ...props
+}) => {
   const ref = useRef();
 
-  const handleOutsideClick = (e) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      onClose();
-    }
-  };
+  // const handleOutsideClick = (e) => {
+  //   if (ref.current && !ref.current.contains(e.target)) {
+  //     onClose();
+  //   }
+  // };
 
   const { currentUser } = useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
@@ -18,14 +25,18 @@ const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
   }`;
 
   return (
-    <div className="modal" onClick={handleOutsideClick}>
+    <Modal name={name} onClose={onClose}>
       <div className="modal__content-card" ref={ref}>
-        <button
+        {/* <button
           className="image__close-button"
           type="button"
           onClick={onClose}
-        ></button>
-        <img className="modal__image" src={selectedCard.imageUrl} />
+        ></button> */}
+        <img
+          className="modal__image"
+          src={selectedCard.imageUrl}
+          alt={selectedCard.name}
+        />
         <div className="modal__info-wrapper">
           <div className="modal__info">
             <p className="modal__info-name">{selectedCard.name}</p>
@@ -42,7 +53,7 @@ const ItemModal = ({ selectedCard, onClose, handleOpenConfirmModal }) => {
           </button>
         </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 

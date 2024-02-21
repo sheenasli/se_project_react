@@ -1,9 +1,7 @@
-import logo from "../../logo.svg";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -17,20 +15,18 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import {
-  baseUrl,
   getItems,
   addItems,
   deleteItems,
   updateProfile,
 } from "../../utils/api";
-import { processServerResponse } from "../../utils/utils";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
-  const weatherTemp = "70° F";
+  // const weatherTemp = "70° F";
 
   //States
   const [activeModal, setActiveModal] = useState("");
@@ -38,11 +34,11 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [deleteConfirm, setDeleteConfirm] = useState(false);
   const [deleteCard, setDeleteCard] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [weatherId, setWeatherId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Handling active modals
   const handleCreateModal = () => {
@@ -70,16 +66,40 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    addItems({ name, imageUrl, weather })
-      .then((res) => {
-        setClothingItems([res.data, ...clothingItems]);
-        handleCloseModal();
-      })
+  //universal handle for handling any submit
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(handleCloseModal)
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    const makeRequest = () => {
+      return addItems({ name, imageUrl, weather }).then((res) => {
+        setClothingItems([res.data, ...clothingItems]);
       });
+    };
+    handleSubmit(makeRequest);
   };
+
+  // const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+  //   addItems({ name, imageUrl, weather });
+  //   setIsLoading(true)
+  //     .then((res) => {
+  //       setClothingItems([res.data, ...clothingItems]);
+  //       handleCloseModal();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -89,15 +109,12 @@ function App() {
     setActiveModal("delete");
   };
 
-  const handleCloseConfirmModal = () => {
-    setActiveModal("");
-  };
-
   //Callback function to delete item
   const handleDeleteItem = () => {
     console.log(selectedCard._id);
     setDeleteCard(true);
-    deleteItems(selectedCard._id)
+    deleteItems(selectedCard._id);
+    setIsLoading(true)
       .then(() => {
         const filteredCards = clothingItems.filter((card) => {
           return card._id !== selectedCard._id;
@@ -105,20 +122,20 @@ function App() {
 
         setClothingItems(filteredCards);
         handleCloseModal();
-        handleCloseConfirmModal();
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => {
         setDeleteCard(false);
+        setIsLoading(false);
       });
   };
 
   //Callback function to register new user
   function handleRegistration({ email, password, name, avatar }) {
-    auth
-      .registration(email, password, name, avatar)
+    auth.registration(email, password, name, avatar);
+    setIsLoading(true)
       .then((res) => {
         console.log(res);
         if (res) {
@@ -136,13 +153,16 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   //Callback function to log in user
   function handleLogin({ email, password }) {
-    auth
-      .authorization(email, password)
+    auth.authorization(email, password);
+    setIsLoading(true)
       .then((res) => {
         if (res) {
           localStorage.setItem("jwt", res.token);
@@ -155,35 +175,56 @@ function App() {
       })
       .catch((err) => {
         console.error("Login failed", err);
-        throw err;
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   //Callback function to edit profile
-  const handleEditProfile = ({ name, avatar }) => {
-    console.log(name, avatar);
-    updateProfile(name, avatar)
-      .then(({ data }) => {
+  function handleEditProfile({ name, avatar }) {
+    function makeRequest() {
+      return updateProfile(name, avatar).then(({ data }) => {
         setCurrentUser(data);
-        handleCloseModal();
         return data;
-      })
-      .catch((err) => {
-        console.error(err);
       });
-  };
+    }
+    handleSubmit(makeRequest);
+  }
+
+  // const handleEditProfile = ({ name, avatar }) => {
+  //   console.log(name, avatar);
+  //   updateProfile(name, avatar);
+  //   setIsLoading(true)
+  //     .then(({ data }) => {
+  //       setCurrentUser(data);
+  //       handleCloseModal();
+  //       return data;
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
 
   //Checking for token
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       localStorage.setItem("jwt", jwt);
-      auth.checkToken(jwt).then((res) => {
-        if (res && res.data) {
-          setIsLoggedIn(true);
-          setCurrentUser(res.data);
-        }
-      });
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          if (res && res.data) {
+            setIsLoggedIn(true);
+            setCurrentUser(res.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, []);
 
@@ -345,7 +386,7 @@ function App() {
           {activeModal === "delete" && (
             <DeleteConfirmModal
               handleDeleteItem={handleDeleteItem}
-              handleCloseConfirmModal={handleCloseConfirmModal}
+              handleCloseModal={handleCloseModal}
               selectedCard={selectedCard}
             />
           )}

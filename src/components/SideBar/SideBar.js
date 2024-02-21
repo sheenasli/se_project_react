@@ -11,7 +11,7 @@ const SideBar = ({ handleEditProfileModal, handleLogout }) => {
         <img
           className="sidebar__avatar-logo"
           src={currentUser?.avatar}
-          alt="{currentUser.name}"
+          alt={currentUser?.name}
         />
         <h3 className="sidebar__username">{currentUser?.name}</h3>
       </div>

@@ -9,12 +9,10 @@ export const registration = (email, password, name, avatar) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, name, avatar }),
-  })
-    .then(processServerResponse)
-    .catch((err) => {
-      console.log(err);
-      // throw err;
-    });
+  }).then(processServerResponse);
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 };
 
 //signin for user authorization
@@ -25,12 +23,7 @@ export const authorization = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then(processServerResponse)
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
+  }).then(processServerResponse);
 };
 
 //check token
@@ -41,9 +34,8 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  })
-    .then(processServerResponse)
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then(processServerResponse);
+  // .catch((err) => {
+  //   console.log(err);
+  // });
 };

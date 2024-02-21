@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ handleLoginModal, onClose, onSubmit, isOpen }) => {
+const RegisterModal = ({
+  handleLoginModal,
+  onClose,
+  onSubmit,
+  isOpen,
+  isLoading,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -32,22 +38,7 @@ const RegisterModal = ({ handleLoginModal, onClose, onSubmit, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ email, password, name, avatar });
-    // if (this.state.password === this.state.confirmPassword) {
-    //   let { email, password, name, avatar } = this.state;
-    //   auth.register(email, password, name, avatar).then((res) => {
-    //     if (res) {
-    //       this.setState({ message: "" }, () => {
-    //         this.props.history.push("/login");
-    //       });
-    //     } else {
-    //       this.setState({
-    //         message: "Something went wrong!",
-    //       });
-    //     }
-    //   });
-    // }
   };
-  //redirect user after reg form is properly submitted
 
   return (
     <ModalWithForm
@@ -111,7 +102,7 @@ const RegisterModal = ({ handleLoginModal, onClose, onSubmit, isOpen }) => {
         />
       </label>
       <button className="modal__button" type="submit">
-        Sign Up
+        {isLoading ? "Submitting..." : "Sign Up"}
       </button>
       <button
         className="modal__button-alt"

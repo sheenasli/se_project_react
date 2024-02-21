@@ -38,5 +38,7 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 
 ## Plans for Improvement
 
-- Improve weather API functionality
+- Add media queries for different screen resolutions
+- Create Input component that can be used for any form in the project (this will result in cleaner code)
 - Validate the form before submitting
+- Continue improvements on mobile burger menu

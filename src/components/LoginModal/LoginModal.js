@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ onClose, handleRegisterModal, onSubmit }) => {
+const LoginModal = ({ onClose, handleRegisterModal, onSubmit, isLoading }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -49,7 +49,7 @@ const LoginModal = ({ onClose, handleRegisterModal, onSubmit }) => {
       </label>
 
       <button className="modal__button" type="submit">
-        Log In
+        {isLoading ? "Logging In..." : "Log In"}
       </button>
       <button
         className="modal__button-alt"

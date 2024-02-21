@@ -1,10 +1,12 @@
 import "./Footer.css";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <div>Developed by TripleTen student Sheena Irvin</div>
-      <div>2023</div>
+      <div>{currentYear}</div>
     </footer>
   );
 };
