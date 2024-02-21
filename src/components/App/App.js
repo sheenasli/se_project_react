@@ -134,8 +134,9 @@ function App() {
 
   //Callback function to register new user
   function handleRegistration({ email, password, name, avatar }) {
-    auth.registration(email, password, name, avatar);
-    setIsLoading(true)
+    setIsLoading(true);
+    auth
+      .registration(email, password, name, avatar)
       .then((res) => {
         console.log(res);
         if (res) {
@@ -145,6 +146,9 @@ function App() {
             .then((data) => {
               setCurrentUser(data);
             })
+            .finally(() => {
+              setIsLoading(false);
+            })
             .catch((err) => {
               console.error(err);
             });
@@ -153,16 +157,14 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   }
 
   //Callback function to log in user
   function handleLogin({ email, password }) {
-    auth.authorization(email, password);
-    setIsLoading(true)
+    setIsLoading(true);
+    auth
+      .authorization(email, password)
       .then((res) => {
         if (res) {
           localStorage.setItem("jwt", res.token);
