@@ -11,6 +11,7 @@ export const getItems = () => {
 
 export const addItems = ({ name, imageUrl, weather }) => {
   const token = localStorage.getItem("jwt");
+  console.log(token);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

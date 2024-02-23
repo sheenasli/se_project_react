@@ -76,9 +76,8 @@ function App() {
   }
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-    const token = localStorage.getItem("jwt");
     const makeRequest = () => {
-      return addItems({ name, imageUrl, weather }, token).then((res) => {
+      return addItems({ name, imageUrl, weather }).then((res) => {
         setClothingItems([res.data, ...clothingItems]);
       });
     };
@@ -95,10 +94,9 @@ function App() {
 
   //Callback function to delete item
   const handleDeleteItem = () => {
-    console.log(selectedCard._id);
+    setIsLoading(true);
     setDeleteCard(true);
-    deleteItems(selectedCard._id);
-    setIsLoading(true)
+    deleteItems(selectedCard._id)
       .then(() => {
         const filteredCards = clothingItems.filter((card) => {
           return card._id !== selectedCard._id;
