@@ -26,8 +26,6 @@ import * as api from "../../utils/api";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
-  // const weatherTemp = "70° F";
-
   //States
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -78,28 +76,14 @@ function App() {
   }
 
   const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
+    const token = localStorage.getItem("jwt");
     const makeRequest = () => {
-      return addItems({ name, imageUrl, weather }).then((res) => {
+      return addItems({ name, imageUrl, weather }, token).then((res) => {
         setClothingItems([res.data, ...clothingItems]);
       });
     };
     handleSubmit(makeRequest);
   };
-
-  // const handleAddItemSubmit = ({ name, imageUrl, weather }) => {
-  //   addItems({ name, imageUrl, weather });
-  //   setIsLoading(true)
-  //     .then((res) => {
-  //       setClothingItems([res.data, ...clothingItems]);
-  //       handleCloseModal();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");

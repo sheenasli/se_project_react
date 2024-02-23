@@ -1,20 +1,13 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 const LoginModal = ({ onClose, handleRegisterModal, onSubmit, isLoading }) => {
-  const [email, setEmail] = useState("");
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const [password, setPassword] = useState("");
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange, setValues } = useForm({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    onSubmit(values);
   };
 
   return (
@@ -28,9 +21,9 @@ const LoginModal = ({ onClose, handleRegisterModal, onSubmit, isLoading }) => {
           minLength="1"
           maxLength="30"
           placeholder="Email"
-          value={email}
+          value={values.email || ""}
           required
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -42,9 +35,9 @@ const LoginModal = ({ onClose, handleRegisterModal, onSubmit, isLoading }) => {
           minLength="8"
           maxLength="30"
           placeholder="Password"
-          value={password}
+          value={values.password || ""}
           required
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
       </label>
 

@@ -14,11 +14,6 @@ const ModalWithForm = ({ name, onClose, onSubmit, ...props }) => {
   return (
     <Modal name={name} onClose={onClose}>
       <div className="modal__content-form" ref={ref}>
-        {/* <button
-          className="modal__close-button"
-          type="button"
-          onClick={onClose}
-        /> */}
         <h3 className="modal__title">{props.title}</h3>
         <form onSubmit={onSubmit}>{props.children}</form>
       </div>

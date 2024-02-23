@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 
 const RegisterModal = ({
   handleLoginModal,
@@ -8,36 +9,15 @@ const RegisterModal = ({
   isOpen,
   isLoading,
 }) => {
-  const [email, setEmail] = useState("");
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const [password, setPassword] = useState("");
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const [name, setName] = useState("");
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const [avatar, setAvatar] = useState("");
-  const handleAvatarChange = (e) => {
-    setAvatar(e.target.value);
-  };
+  const { values, handleChange, setValues } = useForm({});
 
   useEffect(() => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setAvatar("");
+    setValues("");
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name, avatar });
+    onSubmit(values);
   };
 
   return (
@@ -56,9 +36,9 @@ const RegisterModal = ({
           minLength="1"
           maxLength="30"
           placeholder="Email"
-          value={email}
+          value={values.email || ""}
           required
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -70,9 +50,9 @@ const RegisterModal = ({
           minLength="8"
           maxLength="30"
           placeholder="Password"
-          value={password}
+          value={values.password || ""}
           required
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -84,9 +64,9 @@ const RegisterModal = ({
           minLength="2"
           maxLength="30"
           placeholder="Name"
-          value={name}
+          value={values.name || ""}
           required
-          onChange={handleNameChange}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -96,9 +76,9 @@ const RegisterModal = ({
           type="url"
           name="avatar"
           placeholder="Avatar URL"
-          value={avatar}
+          value={values.avatar || ""}
           required
-          onChange={handleAvatarChange}
+          onChange={handleChange}
         />
       </label>
       <button className="modal__button" type="submit">

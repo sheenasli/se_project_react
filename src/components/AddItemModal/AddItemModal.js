@@ -4,24 +4,9 @@ import { useForm } from "../../hooks/useForm";
 
 const AddItemModal = ({ onClose, onAddItem, isOpen, isLoading }) => {
   const { values, handleChange, setValues } = useForm({});
-  // const [name, setName] = useState("");
-  // const handleNameChange = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // const [imageUrl, setUrl] = useState("");
-  // const handleUrlChange = (e) => {
-  //   setUrl(e.target.value);
-  // };
-
-  // const [weather, setWeatherType] = useState("");
-  // const handleWeatherChange = (e) => {
-  //   setWeatherType(e.target.value);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onAddItem({ name, imageUrl, weather });
     onAddItem(values);
   };
 
@@ -41,7 +26,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen, isLoading }) => {
           minLength="1"
           maxLength="30"
           placeholder="Name"
-          value={values.name}
+          value={values.name || ""}
           onChange={handleChange}
         />
       </label>
@@ -54,7 +39,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen, isLoading }) => {
           minLength="1"
           maxLength="999"
           placeholder="Image URL"
-          value={values.imageUrl}
+          value={values.imageUrl || ""}
           onChange={handleChange}
         />
       </label>

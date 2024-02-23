@@ -2,28 +2,37 @@ import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React, { useContext } from "react";
+import { useForm } from "../../hooks/useForm";
 
 const EditProfileModal = ({ onClose, isOpen, onSubmit, isLoading }) => {
   const { currentUser } = useContext(CurrentUserContext);
+  const { values, handleChange, setValues } = useForm({});
 
-  const [name, setName] = useState("");
-  const handleEditName = (e) => {
-    setName(e.target.value);
-  };
+  // const [name, setName] = useState("");
+  // const handleEditName = (e) => {
+  //   setName(e.target.value);
+  // };
 
-  const [avatar, setAvatar] = useState("");
-  const handleEditAvatar = (e) => {
-    setAvatar(e.target.value);
-  };
+  // const [avatar, setAvatar] = useState("");
+  // const handleEditAvatar = (e) => {
+  //   setAvatar(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   setName(currentUser.name ?? "");
+  //   setAvatar(currentUser.avatar ?? "");
+  // }, [isOpen]);
 
   useEffect(() => {
-    setName(currentUser.name ?? "");
-    setAvatar(currentUser.avatar ?? "");
+    setValues({
+      name: currentUser.name ?? "",
+      avatar: currentUser.avatar ?? "",
+    });
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, avatar });
+    onSubmit(values);
   };
 
   return (
@@ -42,8 +51,8 @@ const EditProfileModal = ({ onClose, isOpen, onSubmit, isLoading }) => {
           minLength="2"
           maxLength="30"
           placeholder="New Name"
-          value={name}
-          onChange={handleEditName}
+          value={values.name || ""}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -54,8 +63,8 @@ const EditProfileModal = ({ onClose, isOpen, onSubmit, isLoading }) => {
           name="avatar"
           id="avatar"
           placeholder="NewAvatar URL"
-          value={avatar}
-          onChange={handleEditAvatar}
+          value={values.avatar || ""}
+          onChange={handleChange}
         />
       </label>
       <button className="modal__button" type="submit">
