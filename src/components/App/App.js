@@ -32,11 +32,11 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
-  const [deleteCard, setDeleteCard] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [weatherId, setWeatherId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [deleteCard, setDeleteCard] = useState(false);
 
   //Handling active modals
   const handleCreateModal = () => {
@@ -111,6 +111,7 @@ function App() {
       .finally(() => {
         setDeleteCard(false);
         setIsLoading(false);
+        // handleSubmit();
       });
   };
 
