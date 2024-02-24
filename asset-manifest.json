@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/se_project_react/static/css/main.36f7406b.css",
-    "main.js": "/se_project_react/static/js/main.0ad30d0a.js",
+    "main.css": "/se_project_react/static/css/main.d4cf8e55.css",
+    "main.js": "/se_project_react/static/js/main.0714a555.js",
     "static/js/787.79f92504.chunk.js": "/se_project_react/static/js/787.79f92504.chunk.js",
     "static/media/Avatar.svg": "/se_project_react/static/media/Avatar.dfd91d057379b4130c96d695ee05c3b7.svg",
     "static/media/Snowy Day.svg": "/se_project_react/static/media/Snowy Day.a5bb7441280cef64ae081acadb7d6e66.svg",
@@ -10,24 +10,26 @@
     "static/media/Stormy Night.svg": "/se_project_react/static/media/Stormy Night.b98983c750d3f283a9267efc3c3fd940.svg",
     "static/media/Rainy Day.svg": "/se_project_react/static/media/Rainy Day.8fd968acf8cb57624e2a990b324c1278.svg",
     "static/media/Rainy Night.svg": "/se_project_react/static/media/Rainy Night.ebe0301b9856c6c8564df5c8beea1ac8.svg",
-    "static/media/logo.svg": "/se_project_react/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "static/media/Foggy Day.svg": "/se_project_react/static/media/Foggy Day.8ad4efe699a8e3a16ae0220f3b5a3d48.svg",
     "static/media/Foggy Night.svg": "/se_project_react/static/media/Foggy Night.cee462810b2a7c8696b7701170241a66.svg",
     "static/media/HeaderLogo.svg": "/se_project_react/static/media/HeaderLogo.2e52a3b54443b649938df0a9b3d231e2.svg",
     "static/media/Mobile Nav Button.svg": "/se_project_react/static/media/Mobile Nav Button.eed2d23e16998cfd50aa1153ba59eb63.svg",
     "static/media/Cloudy Night.svg": "/se_project_react/static/media/Cloudy Night.c52565b10982a97a5a67275442bd12ee.svg",
     "static/media/Cloudy Day.svg": "/se_project_react/static/media/Cloudy Day.afb98af2bd43d3a2a330e655695bd2c9.svg",
+    "static/media/likeButton.svg": "/se_project_react/static/media/likeButton.13dc767d9f4d279e5b84bdfdb8a7047a.svg",
+    "static/media/likeButtonActive.svg": "/se_project_react/static/media/likeButtonActive.616e3e7d993626c955811064b26caf99.svg",
+    "static/media/grey_close_button.svg": "/se_project_react/static/media/grey_close_button.5041c8cbf1275be14ac1.svg",
     "index.html": "/se_project_react/index.html",
     "static/media/Image Modal Close Button.svg": "/se_project_react/static/media/Image Modal Close Button.34bff1eb1ed0331b4c52.svg",
     "static/media/Clear Night.svg": "/se_project_react/static/media/Clear Night.ae0e6bbe1e0bfc883f3ba207396bf3b4.svg",
     "static/media/Sunny Day.svg": "/se_project_react/static/media/Sunny Day.1c3ffd02d92146a2673939be89b88d54.svg",
     "static/media/Mobile Menu Close Button.svg": "/se_project_react/static/media/Mobile Menu Close Button.ba40c427ccf8bf1c3a666246e1adea36.svg",
-    "main.36f7406b.css.map": "/se_project_react/static/css/main.36f7406b.css.map",
-    "main.0ad30d0a.js.map": "/se_project_react/static/js/main.0ad30d0a.js.map",
+    "main.d4cf8e55.css.map": "/se_project_react/static/css/main.d4cf8e55.css.map",
+    "main.0714a555.js.map": "/se_project_react/static/js/main.0714a555.js.map",
     "787.79f92504.chunk.js.map": "/se_project_react/static/js/787.79f92504.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36f7406b.css",
-    "static/js/main.0ad30d0a.js"
+    "static/css/main.d4cf8e55.css",
+    "static/js/main.0714a555.js"
   ]
 }
