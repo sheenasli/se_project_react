@@ -1,6 +1,9 @@
 import { processServerResponse } from "./utils";
 
-export const baseUrl = "http://localhost:3001";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://www.wtwr.switchestudio.com"
+    : "http://localhost:3001";
 
 export const getItems = () => {
   return fetch(`${baseUrl}/items`, {
