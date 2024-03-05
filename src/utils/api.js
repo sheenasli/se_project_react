@@ -5,11 +5,15 @@ export const baseUrl =
     ? "https://api.www.wtwr.switchestudio.com"
     : "http://localhost:3001";
 
+// export const getItems = () => {
+//   return fetch(`${baseUrl}/items`, {
+//     method: "GET",
+//     headers: { "Content-Type": "application/json" },
+//   }).then(processServerResponse);
+// };
+
 export const getItems = () => {
-  return fetch(`${baseUrl}/items`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  }).then(processServerResponse);
+  return fetch(`${baseUrl}/items`).then(processServerResponse);
 };
 
 export const addItems = ({ name, imageUrl, weather }) => {
