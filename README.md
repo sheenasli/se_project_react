@@ -41,3 +41,6 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 - Add media queries for different screen resolutions
 - Create Input component that can be used for any form in the project (this will result in cleaner code)
 - Continue improvements on mobile burger menu
+
+## Demo
+https://www.loom.com/share/9ef271fa9ac747ebb0022c7470b49686?sid=62ec78fb-74c5-46c3-a197-3d94037ece41
