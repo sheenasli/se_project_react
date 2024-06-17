@@ -32,9 +32,9 @@ The Figma design was supplied by TripleTen and used to map out the UI design for
 
 ## Links
 
-- The project can be seen live using this [https://wtwr.switchestudio.com]
-- The project's backend can be found by using this [https://github.com/sheenasli/se_project_express.git]
-- The API (OpenWeather) used in this application can be found by clicking on this [https://openweathermap.org/]
+- The project can be seen live using this [Link](https://wtwr.switchestudio.com)
+- The project's backend can be found by using this [Link](https://github.com/sheenasli/se_project_express.git)
+- The API (OpenWeather) used in this application can be found by clicking on this [Link](https://openweathermap.org/)
 
 ## Plans for Improvement
 
